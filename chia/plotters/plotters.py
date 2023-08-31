@@ -54,7 +54,7 @@ class Options(Enum):
     BLADEBIT_NO_DIRECT_DOWNLOADS = 39
     CUDA_TMP_DIR = 40
     BLADEBIT_HYBRID_128_MODE = 41
-    BLADEBIT_HYBRID_64_MODE = 42
+    BLADEBIT_HYBRID_16_MODE = 42
 
 
 chia_plotter_options = [
@@ -117,7 +117,7 @@ bladebit_cuda_plotter_options = [
     Options.BLADEBIT_DEVICE_INDEX,
     Options.BLADEBIT_NO_DIRECT_DOWNLOADS,
     Options.BLADEBIT_HYBRID_128_MODE,
-    Options.BLADEBIT_HYBRID_64_MODE,
+    Options.BLADEBIT_HYBRID_16_MODE,
 ]
 
 bladebit_ram_plotter_options = [
@@ -484,11 +484,11 @@ def build_parser(subparsers, root_path, option_list, name, plotter_desc):
                 help="Enable hybrid disk plotting for 128G system RAM",
                 default=False,
             )
-        if option is Options.BLADEBIT_HYBRID_64_MODE:
+        if option is Options.BLADEBIT_HYBRID_16_MODE:
             parser.add_argument(
-                "--disk-64",
+                "--disk-16",
                 action="store_true",
-                help="Enable hybrid disk plotting for 64G system RAM",
+                help="Enable hybrid disk plotting for 16G system RAM",
                 default=False,
             )
 
