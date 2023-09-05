@@ -367,6 +367,7 @@ class TestFullNodeBlockCompression:
         blockchain = empty_blockchain
         all_blocks: List[FullBlock] = await full_node_1.get_all_full_blocks()
         assert height == len(all_blocks) - 1
+
         assert full_node_1.full_node.full_node_store.previous_generator is not None
         if test_reorgs:
             reog_blocks = bt.get_consecutive_blocks(14)

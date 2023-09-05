@@ -38,6 +38,7 @@ from chia.wallet.util.tx_config import DEFAULT_TX_CONFIG
 from chia.wallet.util.wallet_types import WalletType
 from chia.wallet.wallet_node import WalletNode
 from chia.wallet.wallet_node_api import WalletNodeAPI
+from tests.simulation.test_simulation import test_constants_modified
 
 # TODO: Compare deducted fees in all tests against reported total_fee
 
@@ -96,12 +97,9 @@ OneWalletNodeAndRpc = Tuple[WalletRpcClient, Any, FullNodeSimulator, int, BlockT
 
 
 @pytest_asyncio.fixture(scope="function")
-async def one_wallet_node_and_rpc(
-    trusted: bool,
-    self_hostname: str,
-) -> AsyncIterator[OneWalletNodeAndRpc]:
+async def one_wallet_node_and_rpc(trusted: bool, self_hostname: str) -> AsyncIterator[OneWalletNodeAndRpc]:
     rmtree(get_pool_plot_dir(), ignore_errors=True)
-    async for nodes in setup_simulators_and_wallets_service(1, 1, {}):
+    async for nodes in setup_simulators_and_wallets_service(1, 1, test_constants_modified):
         full_nodes, wallets, bt = nodes
         full_node_api: FullNodeSimulator = full_nodes[0]._api
         wallet_service = wallets[0]
